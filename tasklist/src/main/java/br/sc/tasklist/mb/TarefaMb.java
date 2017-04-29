@@ -64,10 +64,19 @@ public class TarefaMb {
 		this.listarTarefas = listarTarefas;
 	}
 
-	// Botão Salvar
+	// Botão Salvar, e validar os campos 
 	public String salvar() throws Throwable {
-		tarefaRn.salvar(tarefa);
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Foi cadastrado com sucesso!"));
+		if (tarefa.getTitulo() != null && tarefa.getTitulo().length() >= 3
+				|| tarefa.getDescricao() != null && tarefa.getDescricao().length() >= 3) {
+			tarefaRn.salvar(tarefa);
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Sua Tarefa foi registrada com sucesso!", ""));
+		} else {
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+					"Ops ! alguns campos estão incompletos", "");
+			FacesContext.getCurrentInstance().addMessage(null, message);
+		}
+
 		return "adicionartarefa.xhtml";
 
 	}
@@ -82,8 +91,18 @@ public class TarefaMb {
 	public String excluir(String id) throws Throwable {
 		Long idExcluir = Long.parseLong(id);
 		tarefaRn.excluir(idExcluir);
-		return "";
+		FacesContext.getCurrentInstance().addMessage(null,
+				new FacesMessage(FacesMessage.SEVERITY_INFO, "Registro Deletado com Sucesso", ""));
+		return "listartarefa.xhtml";
 
+	}
+
+	// CarregarDados
+	public void carregarTarefa(ComponentSystemEvent event) {
+		if (editarId == null) {
+			return;
+		}
+		tarefa = tarefaRn.buscarPorId(editarId);
 	}
 
 }

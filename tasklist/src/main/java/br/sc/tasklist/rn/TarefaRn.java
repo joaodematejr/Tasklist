@@ -29,4 +29,8 @@ public class TarefaRn {
 
 	}
 
+	public Tarefa buscarPorTitulo(String titulo) {
+		return dao.buscarPorTitulo(titulo);
+	}
+
 }

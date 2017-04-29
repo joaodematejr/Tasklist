@@ -19,7 +19,7 @@ public class TarefaDao extends Dao {
 	// Listar todas as Tarefas do Banco
 	@SuppressWarnings("unchecked")
 	public List<Tarefa> listarTarefas() {
-		Query query = getEM().createQuery("From Tarefa", Tarefa.class);//
+		Query query = getEM().createQuery("FROM Tarefa", Tarefa.class);//
 		return query.getResultList();
 
 	}
@@ -28,6 +28,17 @@ public class TarefaDao extends Dao {
 	public void excluir(Long id) {
 		Tarefa tarefa = getEM().getReference(Tarefa.class, id);
 		getEM().remove(tarefa);
+
+	}
+
+	public Tarefa buscarPorTitulo(String titulo) {
+		Query query = getEM().createQuery("SELECT t FROM Tarefa t WHERE t.titulo = :titulo");
+		query.setParameter("titulo", titulo);
+		try {
+			return (Tarefa) query.getSingleResult();
+		} catch (Exception e) {
+			return null;
+		}
 
 	}
 }

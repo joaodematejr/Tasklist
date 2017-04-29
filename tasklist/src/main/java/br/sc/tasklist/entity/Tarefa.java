@@ -13,6 +13,8 @@ public class Tarefa {
 	private String titulo;
 	private String descricao;
 	private Date cadastro;
+	private Date remocao;
+	private Date conclucao;
 	private Boolean status;
 
 	public Long getId() {
@@ -53,6 +55,22 @@ public class Tarefa {
 
 	public void setCadastro(Date cadastro) {
 		this.cadastro = cadastro;
+	}
+
+	public Date getRemocao() {
+		return remocao;
+	}
+
+	public void setRemocao(Date remocao) {
+		this.remocao = remocao;
+	}
+
+	public Date getConclucao() {
+		return conclucao;
+	}
+
+	public void setConclucao(Date conclucao) {
+		this.conclucao = conclucao;
 	}
 
 	@Override

@@ -69,6 +69,7 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<h1 class="page-header">Listar Tarefas</h1>
+					<h:messages styleClass="alert alert-danger"></h:messages>
 				</div>
 			</div>
 			<div class="row">
@@ -83,6 +84,13 @@
 											<h:form>
 												<h:dataTable value="#{tarefaMb.listarTarefas}" var="tarefa"
 													styleClass="table table-condensed table-bordered table table-hover">
+													<h:column>
+														<f:facet name="header">Concluído</f:facet>
+														<h1>
+															<h:selectBooleanCheckbox class="checkbox"
+																value="#{tarefa.status}" disabled="true" />
+														</h1>
+													</h:column>
 													<h:column>
 														<f:facet name="header">Data</f:facet>
 														<h2>
@@ -121,21 +129,136 @@
 														</h5>
 													</h:column>
 													<h:column>
+														<f:facet name="header">Visualizar</f:facet>
+														<button type="button"
+															class="btn btn-success btn-xs btn-block"
+															data-toggle="modal"
+															data-target="#myModalTarefa#{tarefa.id}">
+															<i class="fa fa-eye" aria-hidden="true"></i>
+														</button>
+														<div class="modal fade bd-example-modal-lg"
+															id="myModalTarefa#{tarefa.id}" tabindex="-1"
+															role="dialog" aria-labelledby="myModalLabel"
+															aria-hidden="true">
+															<div class="modal-dialog modal-lg">
+																<div class="modal-content">
+																	<div class="modal-header">
+																		<button type="button" class="close"
+																			data-dismiss="modal" aria-hidden="true">&times;</button>
+																		<h4 class="modal-title" id="myModalLabel">Lista
+																			Detalhada</h4>
+																	</div>
+																	<div class="modal-body">
+																		<h:dataTable value="#{tarefaMb.listarTarefas}"
+																			var="tar" class="table table-hover">
+																			<h:column>
+																				<f:facet name="header">Concluído</f:facet>
+																				<h5>
+																					<h:selectBooleanCheckbox class="checkbox"
+																						value="#{tar.status}" disabled="true" />
+																				</h5>
+																			</h:column>
+																			<h:column>
+																				<f:facet name="header">Data de Cadastro</f:facet>
+																				<h5>
+																					<h:outputText value="#{tar.cadastro}">
+																						<f:convertDateTime pattern="dd/MMMM/YYYY HH:MM"
+																							timeZone="GMT-03:00" />
+																					</h:outputText>
+																				</h5>
+																			</h:column>
+																			<h:column>
+																				<f:facet name="header">Data de Conclução</f:facet>
+																				<h5>
+																					<h:outputText value="#{tar.conclucao}">
+																						<f:convertDateTime pattern="dd/MMMM/YYYY HH:MM"
+																							timeZone="GMT-03:00" />
+																					</h:outputText>
+																				</h5>
+																			</h:column>
+																			<h:column>
+																				<f:facet name="header">Data para Remoção</f:facet>
+																				<h5>
+																					<h:outputText value="#{tar.remocao}">
+																						<f:convertDateTime pattern="dd/MMMM/YYYY HH:MM"
+																							timeZone="GMT-03:00" />
+																					</h:outputText>
+																				</h5>
+																			</h:column>
+																			<h:column>
+																				<f:facet name="header">Titulo</f:facet>
+																				<h5>
+																					<h:outputText value="#{tar.titulo}">
+																					</h:outputText>
+																				</h5>
+																			</h:column>
+																			<h:column>
+																				<f:facet name="header">Descrição</f:facet>
+																				<h5>
+																					<h:outputText value="#{tar.descricao}">
+																					</h:outputText>
+																				</h5>
+																			</h:column>
+																		</h:dataTable>
+																	</div>
+																	<div class="modal-footer">
+																		<button type="button" class="btn btn-default"
+																			data-dismiss="modal">Close</button>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</h:column>
+													<h:column>
 														<f:facet name="header">Alteração</f:facet>
-														<h:link outcome="adicionartarefa"
-															styleClass="btn btn-warning btn-xs btn-block">
-															<span class="glyphicon glyphicon-pencil"></span>
+														<h:link styleClass="btn btn-warning btn-xs btn-block"
+															outcome="adicionartarefa" data-toggle="tooltip"
+															data-placement="top" title="Alterar Dados">
+															<f:param name="id" value="#{tarefa.id}" />
+															<i class="fa fa-pencil-square-o fa-1x" aria-hidden="true"></i>
 														</h:link>
 													</h:column>
 													<h:column>
-														<f:facet name="header">Deletar</f:facet>
-														<h:commandLink
-															onclick=" return confirm('Tem certeza da exclusão um cliente #{tarefa.id}');"
-															styleClass="btn btn-danger btn-xs btn-block"
-															immediate="true"
-															action="#{tarefaMb.excluir(tarefa.id)}" value="">
+														<f:facet name="header">Excluir</f:facet>
+														<button type="button"
+															class="btn btn-danger btn-xs btn-block"
+															data-toggle="modal"
+															data-target="#myModalExcluirTarefa#{tarefa.id}">
 															<span class="glyphicon glyphicon-trash"></span>
-														</h:commandLink>
+														</button>
+														<div class="modal fade"
+															id="myModalExcluirTarefa#{tarefa.id}" tabindex="-1"
+															role="dialog" aria-labelledby="exampleModalLabel"
+															aria-hidden="true">
+															<div class="modal-dialog" role="document">
+																<div class="modal-content">
+																	<div class="modal-header">
+																		<h5 class="modal-title" id="exampleModalLabel">Aviso
+																			!!!</h5>
+																		<button type="button" class="close"
+																			data-dismiss="modal" aria-label="Close">
+																			<span aria-hidden="true">&times;</span>
+																		</button>
+																	</div>
+																	<div class="modal-body">
+																		<div class="alert alert-danger" role="alert">
+																			Você realmente deseja excluir <strong><h:outputText
+																					value="#{tarefa.titulo}" /></strong> do sistema ?
+																		</div>
+																	</div>
+																	<div class="modal-footer">
+																		<button type="button" class="btn btn-default"
+																			data-dismiss="modal">Cancelar</button>
+																		<h:commandLink styleClass="btn btn-danger"
+																			immediate="true"
+																			action="#{tarefaMb.excluir(tarefa.id)}" value="Sim"
+																			data-toggle="tooltip" data-placement="top"
+																			title="Excluir itens">
+																		</h:commandLink>
+																	</div>
+																</div>
+															</div>
+														</div>
 													</h:column>
 												</h:dataTable>
 											</h:form>
