@@ -1,5 +1,6 @@
 package br.sc.tasklist.entity;
 
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -11,6 +12,8 @@ public class Tarefa {
 	private Long id;
 	private String titulo;
 	private String descricao;
+	private Date cadastro;
+	private Boolean status;
 
 	public Long getId() {
 		return id;
@@ -34,6 +37,22 @@ public class Tarefa {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	public Boolean getStatus() {
+		return status;
+	}
+
+	public void setStatus(Boolean status) {
+		this.status = status;
+	}
+
+	public Date getCadastro() {
+		return cadastro;
+	}
+
+	public void setCadastro(Date cadastro) {
+		this.cadastro = cadastro;
 	}
 
 	@Override

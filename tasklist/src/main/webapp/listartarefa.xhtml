@@ -11,7 +11,7 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 <!-- jQuery -->
-<script src="bootstrap/datepicker/jquery.min.js"></script>
+<script src="bootstrap/vendor/jquery/jquery.min.js"></script>
 <!-- Bootstrap Core JavaScript -->
 <script src="bootstrap/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!-- Metis Menu Plugin JavaScript -->
@@ -32,12 +32,7 @@
 <link href="bootstrap/vendor/font-awesome/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css" />
 <!-- Include Date Range Picker -->
-<link href="bootstrap/datepicker/bootstrap-datetimepicker.css"
-	rel="stylesheet" />
-<script src="bootstrap/datepicker/datepicker-component.js"></script>
-<script src="bootstrap/datepicker/moment-with-locales.js"></script>
-<script src="bootstrap/datepicker/bootstrap-datetimepicker.js"></script>
-<title>Adicionar Tarefa</title>
+<title>Listar Tarefas</title>
 </head>
 <body>
 	<div id="wrapper">
@@ -72,49 +67,80 @@
 		</nav>
 		<div id="page-wrapper">
 			<div class="row">
-				<div class="col-lg-6">
-					<h1 class="page-header">Nova Tarefa</h1>
+				<div class="col-lg-12">
+					<h1 class="page-header">Listar Tarefas</h1>
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-lg-6">
+				<div class="col-lg-12">
 					<div class="panel panel-default">
-						<div class="panel-heading">Preencher os Campos abaixo</div>
+						<div class="panel-heading">Listagem</div>
 						<div class="panel-body">
 							<div class="row">
 								<div class="col-lg-12">
-									<h:form id="formulario">
-										<div class="form-group">
-											<label>Título</label>
-											<h:inputText styleClass="form-control"
-												value="#{tarefaMb.tarefa.titulo}" />
+									<div class="agenda">
+										<div class="table-responsive">
+											<h:form>
+												<h:dataTable value="#{tarefaMb.listarTarefas}" var="tarefa"
+													styleClass="table table-condensed table-bordered table table-hover">
+													<h:column>
+														<f:facet name="header">Data</f:facet>
+														<h2>
+															<h:outputText value="#{tarefa.cadastro}">
+																<f:convertDateTime pattern="EEEEEEEE, dd "
+																	timeZone="GMT-03:00" />
+															</h:outputText>
+														</h2>
+														<h3>
+															<h:outputText value="#{tarefa.cadastro}">
+																<f:convertDateTime pattern=" MMMMM yyyy"
+																	timeZone="GMT-03:00" />
+															</h:outputText>
+														</h3>
+													</h:column>
+													<h:column>
+														<f:facet name="header">Horario</f:facet>
+														<h3>
+															<h:outputText value="#{tarefa.cadastro}">
+																<f:convertDateTime pattern="HH:mm" timeZone="GMT-03:00" />
+															</h:outputText>
+														</h3>
+													</h:column>
+													<h:column>
+														<f:facet name="header">Titulo</f:facet>
+														<h4>
+															<h:outputText value="#{tarefa.titulo}">
+															</h:outputText>
+														</h4>
+													</h:column>
+													<h:column>
+														<f:facet name="header">Descrição</f:facet>
+														<h5>
+															<h:outputText value="#{tarefa.descricao}">
+															</h:outputText>
+														</h5>
+													</h:column>
+													<h:column>
+														<f:facet name="header">Alteração</f:facet>
+														<h:link outcome="adicionartarefa"
+															styleClass="btn btn-warning btn-xs btn-block">
+															<span class="glyphicon glyphicon-pencil"></span>
+														</h:link>
+													</h:column>
+													<h:column>
+														<f:facet name="header">Deletar</f:facet>
+														<h:commandLink
+															onclick=" return confirm('Tem certeza da exclusão um cliente #{calendario.id}');"
+															styleClass="btn btn-danger btn-xs btn-block"
+															immediate="true"
+															action="#{calendarioMb.excluir(calendario.id)}" value="">
+															<span class="glyphicon glyphicon-trash"></span>
+														</h:commandLink>
+													</h:column>
+												</h:dataTable>
+											</h:form>
 										</div>
-										<div class="form-group">
-											<label>Descrição</label>
-											<h:inputTextarea rows="5" styleClass="form-control"
-												value="#{tarefaMb.tarefa.descricao}" />
-										</div>
-										<label>Data da criação</label>
-										<div class='input-group date datetimepicker'>
-											<h:inputText styleClass="form-control"
-												value="#{tarefaMb.tarefa.cadastro}">
-												<f:convertDateTime pattern="dd/MM/yyyy HH:mm" timeZone="GMT-03:00"/>
-											</h:inputText>
-											<span class="input-group-addon"> <span
-												class="glyphicon glyphicon-calendar"></span>
-											</span>
-										</div>
-										<div class="form-group">
-											<label>Status</label>
-											<div class="checkbox">
-												<label> <h:selectBooleanCheckbox
-														value="#{tarefaMb.tarefa.status}" />Concluído
-												</label>
-											</div>
-										</div>
-										<h:commandLink styleClass="btn btn-success"
-											action="#{tarefaMb.salvar()}" value="Salvar" />
-									</h:form>
+									</div>
 								</div>
 							</div>
 						</div>

@@ -16,6 +16,7 @@ import br.sc.tasklist.entity.Tarefa;
 public class TarefaMb {
 	private Tarefa tarefa;
 	private TarefaRn tarefaRn;
+	private List<Tarefa> listarTarefas;
 	private Long editarId;
 
 	@PostConstruct
@@ -48,22 +49,29 @@ public class TarefaMb {
 		this.editarId = editarId;
 	}
 
-	public String salvar() throws Throwable {
-		try {
-			tarefaRn.salvar(tarefa);
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO, " foi cadastrado com sucesso!", ""));
-			return "";
-		} catch (IllegalArgumentException exception) {
-			exception.printStackTrace();
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro ao Salvar", exception.getMessage()));
-		} catch (Exception e) {
-			e.printStackTrace();
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro ao Salvar", e.getMessage()));
+	public List<Tarefa> getListarTarefas() {
+		if (listarTarefas == null) {
+			listarTarefas = tarefaRn.listarTarefas();
+
 		}
-		return "";
+		return listarTarefas;
+	}
+
+	public void setListarTarefas(List<Tarefa> listarTarefas) {
+		this.listarTarefas = listarTarefas;
+	}
+
+	// Botão Salvar
+	public String salvar() throws Throwable {
+		tarefaRn.salvar(tarefa);
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Foi cadastrado com sucesso!"));
+		return "adicionartarefa.xhtml";
+
+	}
+
+	public String Limpar() {
+		return "adicionartarefa.xhtml";
+
 	}
 
 }
