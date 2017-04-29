@@ -24,4 +24,9 @@ public class TarefaRn {
 		return dao.listarTarefas();
 	}
 
+	public void excluir(Long id) {
+		dao.excluir(id);
+
+	}
+
 }

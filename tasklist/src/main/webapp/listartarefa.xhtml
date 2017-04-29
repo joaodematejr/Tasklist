@@ -130,10 +130,10 @@
 													<h:column>
 														<f:facet name="header">Deletar</f:facet>
 														<h:commandLink
-															onclick=" return confirm('Tem certeza da exclusão um cliente #{calendario.id}');"
+															onclick=" return confirm('Tem certeza da exclusão um cliente #{tarefa.id}');"
 															styleClass="btn btn-danger btn-xs btn-block"
 															immediate="true"
-															action="#{calendarioMb.excluir(calendario.id)}" value="">
+															action="#{tarefaMb.excluir(tarefa.id)}" value="">
 															<span class="glyphicon glyphicon-trash"></span>
 														</h:commandLink>
 													</h:column>

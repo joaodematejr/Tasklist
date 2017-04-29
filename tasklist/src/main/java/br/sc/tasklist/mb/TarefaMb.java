@@ -8,6 +8,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ComponentSystemEvent;
+
+import org.hibernate.engine.internal.TwoPhaseLoad;
+
 import br.sc.tasklist.rn.TarefaRn;
 import br.sc.tasklist.entity.Tarefa;
 
@@ -69,8 +72,17 @@ public class TarefaMb {
 
 	}
 
+	// Limpar campos do formulario
 	public String Limpar() {
 		return "adicionartarefa.xhtml";
+
+	}
+
+	// Excluir do banco
+	public String excluir(String id) throws Throwable {
+		Long idExcluir = Long.parseLong(id);
+		tarefaRn.excluir(idExcluir);
+		return "";
 
 	}
 

@@ -10,15 +10,24 @@ public class TarefaDao extends Dao {
 		return getEM().find(Tarefa.class, id);
 	}
 
+	// Salvar No Banco
 	public void salvar(Tarefa tarefa) {
 		getEM().merge(tarefa);
 
 	}
 
+	// Listar todas as Tarefas do Banco
 	@SuppressWarnings("unchecked")
 	public List<Tarefa> listarTarefas() {
 		Query query = getEM().createQuery("From Tarefa", Tarefa.class);//
 		return query.getResultList();
+
+	}
+
+	// Excluir do Banco
+	public void excluir(Long id) {
+		Tarefa tarefa = getEM().getReference(Tarefa.class, id);
+		getEM().remove(tarefa);
 
 	}
 }
