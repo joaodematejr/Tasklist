@@ -1,70 +1,13 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
-<head>
-<meta charset="utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="" />
-<meta name="author" content="" />
-<!-- jQuery -->
-<script src="bootstrap/vendor/jquery/jquery.min.js"></script>
-<!-- Bootstrap Core JavaScript -->
-<script src="bootstrap/vendor/bootstrap/js/bootstrap.min.js"></script>
-<!-- Metis Menu Plugin JavaScript -->
-<script src="bootstrap/vendor/metisMenu/metisMenu.min.js"></script>
-<!-- Custom Theme JavaScript -->
-<script src="bootstrap/dist/js/sb-admin-2.js"></script>
-<!-- Bootstrap Core CSS -->
-<link href="bootstrap/vendor/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet" />
-<!-- MetisMenu CSS -->
-<link href="bootstrap/vendor/metisMenu/metisMenu.min.css"
-	rel="stylesheet" />
-<!-- Custom CSS -->
-<link href="bootstrap/dist/css/sb-admin-2.css" rel="stylesheet" />
-<!-- Morris Charts CSS -->
-<link href="bootstrap/vendor/morrisjs/morris.css" rel="stylesheet" />
-<!-- Custom Fonts -->
-<link href="bootstrap/vendor/font-awesome/css/font-awesome.min.css"
-	rel="stylesheet" type="text/css" />
-<!-- Include Date Range Picker -->
-<title>Listar Tarefas</title>
-</head>
-<body>
-	<div id="wrapper">
-		<!-- Navigation -->
-		<nav class="navbar navbar-default navbar-static-top" role="navigation"
-			style="margin-bottom: 0">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse"
-				data-target=".navbar-collapse">
-				<span class="sr-only">Toggle navigation</span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="index.xhtml">Task List</a>
-		</div>
-		<div class="navbar-default sidebar" role="navigation">
-			<div class="sidebar-nav navbar-collapse">
-				<ul class="nav" id="side-menu">
-					<li></li>
-					<li><a href="#"><i class="fa fa-tasks" aria-hidden="true"></i>
-							Tarefa<span class="fa arrow"></span></a>
-						<ul class="nav nav-second-level">
-							<li><a href="adicionartarefa.xhtml"><i
-									class="fa fa-plus" aria-hidden="true"></i> Adicionar nova
-									Tarefa</a></li>
-							<li><a href="listartarefa.xhtml"><i
-									class="fa fa-list-ol" aria-hidden="true"></i> Listar Tarefas</a></li>
-						</ul></li>
-				</ul>
-			</div>
-		</div>
-		</nav>
+
+<ui:composition template="/WEB-INF/template/template.xhtml">
+	<ui:define name="conteudo">
 		<div id="page-wrapper">
 			<div class="row">
 				<div class="col-lg-12">
@@ -85,7 +28,7 @@
 												<h:dataTable value="#{tarefaMb.listarTarefas}" var="tarefa"
 													styleClass="table table-condensed table-bordered table table-hover">
 													<h:column>
-														<f:facet name="header">Concluído</f:facet>
+														<f:facet name="header">ConcluÃ­do</f:facet>
 														<h1>
 															<h:selectBooleanCheckbox class="checkbox"
 																value="#{tarefa.status}" disabled="true" />
@@ -122,7 +65,7 @@
 														</h4>
 													</h:column>
 													<h:column>
-														<f:facet name="header">Descrição</f:facet>
+														<f:facet name="header">DescriÃ§Ã£o</f:facet>
 														<h5>
 															<h:outputText value="#{tarefa.descricao}">
 															</h:outputText>
@@ -152,7 +95,7 @@
 																		<h:dataTable value="#{tarefaMb.listarTarefas}"
 																			var="tar" class="table table-hover">
 																			<h:column>
-																				<f:facet name="header">Concluído</f:facet>
+																				<f:facet name="header">ConcluÃ­do</f:facet>
 																				<h5>
 																					<h:selectBooleanCheckbox class="checkbox"
 																						value="#{tar.status}" disabled="true" />
@@ -168,7 +111,7 @@
 																				</h5>
 																			</h:column>
 																			<h:column>
-																				<f:facet name="header">Data de Conclução</f:facet>
+																				<f:facet name="header">Data de ConcluÃ§Ã£o</f:facet>
 																				<h5>
 																					<h:outputText value="#{tar.conclucao}">
 																						<f:convertDateTime pattern="dd/MMMM/YYYY HH:MM"
@@ -177,7 +120,7 @@
 																				</h5>
 																			</h:column>
 																			<h:column>
-																				<f:facet name="header">Data para Remoção</f:facet>
+																				<f:facet name="header">Data para RemoÃ§Ã£o</f:facet>
 																				<h5>
 																					<h:outputText value="#{tar.remocao}">
 																						<f:convertDateTime pattern="dd/MMMM/YYYY HH:MM"
@@ -193,7 +136,7 @@
 																				</h5>
 																			</h:column>
 																			<h:column>
-																				<f:facet name="header">Descrição</f:facet>
+																				<f:facet name="header">DescriÃ§Ã£o</f:facet>
 																				<h5>
 																					<h:outputText value="#{tar.descricao}">
 																					</h:outputText>
@@ -210,7 +153,7 @@
 														</div>
 													</h:column>
 													<h:column>
-														<f:facet name="header">Alteração</f:facet>
+														<f:facet name="header">AlteraÃ§Ã£o</f:facet>
 														<h:link styleClass="btn btn-warning btn-xs btn-block"
 															outcome="adicionartarefa" data-toggle="tooltip"
 															data-placement="top" title="Alterar Dados">
@@ -242,7 +185,7 @@
 																	</div>
 																	<div class="modal-body">
 																		<div class="alert alert-danger" role="alert">
-																			Você realmente deseja excluir <strong><h:outputText
+																			VocÃª realmente deseja excluir <strong><h:outputText
 																					value="#{tarefa.titulo}" /></strong> do sistema ?
 																		</div>
 																	</div>
@@ -271,6 +214,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
-</body>
+	</ui:define>
+</ui:composition>
 </html>

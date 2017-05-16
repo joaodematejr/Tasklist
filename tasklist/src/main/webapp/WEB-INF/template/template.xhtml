@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>
+	<ui:insert name="title">Tarefas</ui:insert>
+	</title>
+	<!-- Bootstrap Core CSS -->
+	<h:outputStylesheet name="/bootstrap/vendor/bootstrap/css/bootstrap.min.css" />
+	<!-- Datetimepicker -->
+	<h:outputStylesheet name="/bootstrap/datepicker/bootstrap-datetimepicker.css" />
+	<!-- Custom CSS -->
+	<h:outputStylesheet name="/bootstrap/dist/css/sb-admin-2.css" />
+	<!-- Custom Fonts -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<!-- jQuery -->
+	<h:outputScript name="/bootstrap/datepicker/jquery.min.js" />
+</h:head>
+<h:body>
+	<nav class="navbar navbar-default navbar-static-top" role="navigation"
+		style="margin-bottom: 0">
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse"
+			data-target=".navbar-collapse">
+			<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
+			<span class="icon-bar"></span> <span class="icon-bar"></span>
+		</button>
+		<a class="navbar-brand" href="index.xhtml">Task List</a>
+	</div>
+	<div class="navbar-default sidebar" role="navigation">
+		<div class="sidebar-nav navbar-collapse">
+			<ul class="nav" id="side-menu">
+				<li><a href="#"><i class="fa fa-tasks" aria-hidden="true"></i>
+						Tarefa<span class="fa arrow"></span></a>
+					<ul class="nav nav-second-level">
+						<li><a href="adicionartarefa.xhtml"><i class="fa fa-plus"
+								aria-hidden="true"></i> Adicionar nova Tarefa</a></li>
+						<li><a href="listartarefa.xhtml"><i class="fa fa-list-ol"
+								aria-hidden="true"></i> Listar Tarefas</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+	</nav>
+	<!-- Conteudo das Proximas paginas -->
+	<ui:insert name="conteudo"></ui:insert>
+	
+	<!-- Datetimepicker -->
+	<h:outputScript name="/bootstrap/datepicker/moment-with-locales.js" />
+	<!-- Custom Theme JavaScript -->
+	<h:outputScript name="/bootstrap/dist/js/sb-admin-2.js" />
+	<!-- Bootstrap Core JavaScript -->
+	<h:outputScript name="/bootstrap/vendor/bootstrap/js/bootstrap.min.js" />
+	<!-- Datetimepicker -->
+	<h:outputScript name="/bootstrap/datepicker/bootstrap-datetimepicker.js" />
+	<!-- Metis Menu Plugin JavaScript -->
+	<h:outputScript name="/bootstrap/vendor/metisMenu/metisMenu.min.js" />
+</h:body>
+</html>
